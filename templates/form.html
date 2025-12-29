@@ -256,12 +256,20 @@
     <div class="card">
 
       <div class="topline">
-        <div style="color:var(--muted); font-weight:800; font-size:13px;">Form</div>
-        <div class="langlinks">
-          <a href="/fr">FR</a>
-          <a href="/nl">NL</a>
-        </div>
-      </div>
+  <a class="backlink" href="/context/{{ lang }}">
+    <span class="backicon">←</span>
+    {% if lang == "nl" %}
+      Terug naar context
+    {% else %}
+      Retour au contexte
+    {% endif %}
+  </a>
+
+  <div class="langlinks">
+    <a href="/fr">FR</a>
+    <a href="/nl">NL</a>
+  </div>
+</div>
 
       <h1>{{ t.title }}</h1>
       <p class="sub">{{ t.subtitle }}</p>
