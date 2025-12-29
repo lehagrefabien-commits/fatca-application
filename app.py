@@ -195,7 +195,7 @@ def generate():
 
     # 3) Choix du template Word selon la langue
     template_filename = "template_fr.docx" if lang == "fr" else "template_nl.docx"
-    template_path = os.path.join(APP_DIR, "word_templates", template_filename)
+    template_path = os.path.join(APP_DIR, "templates", "word_templates", template_filename)
 
     if not os.path.exists(template_path):
         abort(500, f"Template Word introuvable : word_templates/{template_filename}")
