@@ -35,7 +35,7 @@ CONTEXT = {
         "beschikken personen die door het FATCA-akkoord worden getroffen over het recht om "
         "de wissing van hun persoonsgegevens te verzoeken wanneer zij van oordeel zijn dat "
         "de verwerking ervan niet in overeenstemming is met de AVG.<br><br>"
-        "Het doel van deze démarche is u in staat te stellen dit recht op gegevenswissing "
+        "Het doel van deze toepassing is u in staat te stellen dit recht op gegevenswissing "
         "concreet uit te oefenen ten aanzien van de FOD Financiën (de Belgische "
         "belastingadministratie), door het genereren van een brief die kan worden afgedrukt, "
         "ondertekend en verzonden."
