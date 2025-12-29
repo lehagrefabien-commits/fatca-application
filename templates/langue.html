@@ -4,35 +4,105 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Accord FATCA – Contexte juridique</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 16px;
-      line-height: 1.5;
+    :root{
+      --bg:#0b1220;
+      --card:#111c36;
+      --text:#e8eefc;
+      --muted:#b8c6e6;
+      --border:rgba(255,255,255,0.14);
+      --white:#ffffff;
     }
-    h1 { margin-bottom: 20px; }
-    .context { margin-bottom: 30px; }
-    a.btn {
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1200px 600px at 20% 10%, #1a2a52 0%, transparent 60%),
+                  radial-gradient(1000px 600px at 80% 0%, #243a6b 0%, transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 16px;
+    }
+    .wrap{ width:100%; max-width: 900px; }
+    .card{
+      background: rgba(17,28,54,0.9);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+    }
+    h1{
+      margin-top:0;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing:-0.3px;
+    }
+    p{
+      color: var(--muted);
+      line-height:1.65;
+      max-width: 85ch;
+    }
+    .actions{
+      margin-top: 26px;
+    }
+    a.btn{
       display:inline-block;
-      padding:14px 18px;
-      border:1px solid #000;
+      padding:14px 20px;
+      border-radius:12px;
       text-decoration:none;
-      font-weight:700;
-      color:#000;
+      font-weight:800;
+      background: var(--white);
+      color:#0b1220;
     }
   </style>
 </head>
 <body>
 
-<h1>Accord FATCA – Contexte juridique</h1>
+  <div class="wrap">
+    <div class="card">
 
-<div class="context">
-  {{ context_text|safe }}
-</div>
+      <h1>Accord FATCA – Contexte juridique</h1>
 
-<a class="btn" href="/{{ lang }}">Continuer</a>
+      <p>
+        Par un arrêt interlocutoire rendu fin 2025, la Cour des marchés a décidé de saisir
+        la Cour de justice de l’Union européenne (CJUE) de treize questions préjudicielles
+        relatives à la conformité de l’accord intergouvernemental FATCA avec le droit de
+        l’Union européenne, et en particulier avec les exigences du règlement général sur
+        la protection des données (RGPD).
+      </p>
+
+      <p>
+        Cette saisine intervient à la suite de la décision n°79/2025 du 24 avril 2025 de
+        l’Autorité de protection des données (APD), par laquelle plusieurs violations du
+        RGPD ont été constatées. Cette décision impose au SPF Finances, en tant que
+        responsable de traitement, de mettre en conformité les transferts de données
+        opérés dans le cadre de l’accord FATCA afin de les rendre compatibles avec le RGPD.
+      </p>
+
+      <p>
+        Dans ce contexte juridique désormais porté au niveau européen, les personnes
+        concernées par l’accord FATCA disposent du droit de demander l’effacement de leurs
+        données à caractère personnel lorsqu’elles estiment que leur traitement ne respecte
+        pas le RGPD.
+      </p>
+
+      <p>
+        Le présent formulaire a pour objet de vous permettre d’exercer concrètement ce
+        droit à l’effacement auprès du SPF Finances, en générant un courrier prêt à être
+        imprimé, signé et adressé à l’administration compétente.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href="/{{ lang }}">Continuer</a>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 </html>
