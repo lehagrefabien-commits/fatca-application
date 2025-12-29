@@ -92,6 +92,61 @@
       line-height:1.55;
       max-width: 95ch;
     }
+
+    /* ====== DON + A PROPOS (colonne droite) ====== */
+    .don-layout{
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 24px;
+      align-items: start;
+      margin-top: 10px;
+    }
+
+    .don-about{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fff;
+      color: var(--text);
+      position: sticky;
+      top: 24px;
+    }
+
+    .don-about h3{
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+
+    .don-about p{
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      margin: 0 0 12px 0;
+    }
+
+    .don-about p strong{
+      color: var(--text);
+    }
+
+    .about-image{
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display:block;
+      margin: 12px 0 14px 0;
+      border: 1px solid var(--line);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .don-layout{
+        grid-template-columns: 1fr;
+      }
+      .don-about{
+        position: static;
+      }
+    }
   </style>
 </head>
 
@@ -116,10 +171,44 @@
       <h2>{{ t.support_title }}</h2>
       <p>{{ t.support_sub }}</p>
 
-      <!-- IFRAME DON AAA -->
-      <div class="iframe-asc-container"
-           data-type="collect"
-           data-collect-id="01KDMS06DAP5ABR1CQM508SWRS">
+      <!-- CONTAINER DON + A PROPOS -->
+      <div class="don-layout">
+
+        <!-- DON -->
+        <div class="don-main">
+          <div class="iframe-asc-container"
+               data-type="collect"
+               data-collect-id="01KDMS06DAP5ABR1CQM508SWRS">
+          </div>
+        </div>
+
+        <!-- A PROPOS (toujours visible à droite) -->
+        <aside class="don-about">
+          <h3>À propos</h3>
+
+          <img src="{{ url_for('static', filename='img/fatca-combat.jpg') }}"
+               alt="Combat contre FATCA"
+               class="about-image">
+
+          <p>
+            <strong>Soutenir l’AAA, c’est combattre FATCA en Europe.</strong>
+          </p>
+
+          <p>
+            L’Association des Américains Accidentels (AAA) mène depuis plusieurs années
+            un combat juridique et politique contre FATCA, une loi américaine aux effets
+            extraterritoriaux portant atteinte aux droits fondamentaux et à la protection
+            des données personnelles en Europe.
+          </p>
+
+          <p>
+            Par ses actions devant les autorités nationales et européennes, l’AAA a
+            contribué à faire émerger un enjeu majeur : la compatibilité des transferts
+            massifs de données financières vers les États-Unis avec le RGPD et le respect
+            de la vie privée.
+          </p>
+        </aside>
+
       </div>
 
       <script src="https://www.americains-accidentels.fr/public/build/js/iframe.js"></script>
