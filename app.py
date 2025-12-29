@@ -137,6 +137,16 @@ def form_fr():
 def form_nl():
     return _render_form("nl")
 
+@app.route("/context/<lang>", methods=["GET"])
+def context(lang):
+    if lang not in ("fr", "nl"):
+        abort(404)
+
+    return render_template(
+        "langue.html",
+        context_text=CONTEXT[lang],
+        lang=lang)
+
 
 def _render_form(lang: str):
     if lang not in ("fr", "nl"):
