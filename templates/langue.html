@@ -1,9 +1,15 @@
 <!doctype html>
-<html lang="fr">
+<html lang="{{ lang }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Accord FATCA – Contexte juridique</title>
+  <title>
+    {% if lang == "nl" %}
+      FATCA-akkoord – Juridische context
+    {% else %}
+      Accord FATCA – Contexte juridique
+    {% endif %}
+  </title>
 
   <style>
     :root{
@@ -42,7 +48,7 @@
       font-size: clamp(22px, 3vw, 30px);
       letter-spacing:-0.3px;
     }
-    p{
+    .context{
       color: var(--muted);
       line-height:1.65;
       max-width: 85ch;
@@ -66,39 +72,22 @@
   <div class="wrap">
     <div class="card">
 
-      <h1>Accord FATCA – Contexte juridique</h1>
+      <h1>
+        {% if lang == "nl" %}
+          FATCA-akkoord – Juridische context
+        {% else %}
+          Accord FATCA – Contexte juridique
+        {% endif %}
+      </h1>
 
-      <p>
-        Par un arrêt interlocutoire rendu fin 2025, la Cour des marchés a décidé de saisir
-        la Cour de justice de l’Union européenne (CJUE) de treize questions préjudicielles
-        relatives à la conformité de l’accord intergouvernemental FATCA avec le droit de
-        l’Union européenne, et en particulier avec les exigences du règlement général sur
-        la protection des données (RGPD).
-      </p>
-
-      <p>
-        Cette saisine intervient à la suite de la décision n°79/2025 du 24 avril 2025 de
-        l’Autorité de protection des données (APD), par laquelle plusieurs violations du
-        RGPD ont été constatées. Cette décision impose au SPF Finances, en tant que
-        responsable de traitement, de mettre en conformité les transferts de données
-        opérés dans le cadre de l’accord FATCA afin de les rendre compatibles avec le RGPD.
-      </p>
-
-      <p>
-        Dans ce contexte juridique désormais porté au niveau européen, les personnes
-        concernées par l’accord FATCA disposent du droit de demander l’effacement de leurs
-        données à caractère personnel lorsqu’elles estiment que leur traitement ne respecte
-        pas le RGPD.
-      </p>
-
-      <p>
-        Le présent formulaire a pour objet de vous permettre d’exercer concrètement ce
-        droit à l’effacement auprès du SPF Finances, en générant un courrier prêt à être
-        imprimé, signé et adressé à l’administration compétente.
-      </p>
+      <div class="context">
+        {{ context_text | safe }}
+      </div>
 
       <div class="actions">
-        <a class="btn" href="/{{ lang }}">Continuer</a>
+        <a class="btn" href="/{{ lang }}">
+          {% if lang == "nl" %}Verder{% else %}Continuer{% endif %}
+        </a>
       </div>
 
     </div>
