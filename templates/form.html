@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>{{ t.title }}</title>
+</head>
+<body>
+
+<h1>{{ t.title }}</h1>
+<p>{{ t.subtitle }}</p>
+
+<form method="post" action="/generate">
+
+<input type="hidden" name="lang" value="{{ lang }}">
+
+<label>{{ t.civilite }}</label>
+<select name="civilite">
+  <option value="H">{{ t.monsieur }}</option>
+  <option value="F">{{ t.madame }}</option>
+</select><br><br>
+
+<label>{{ t.nom_prenom }}</label>
+<input name="nom_prenom"><br><br>
+
+<label>{{ t.adresse }}</label>
+<input name="adresse"><br><br>
+
+<label>{{ t.cp_ville }}</label>
+<input name="cp_ville"><br><br>
+
+<label>{{ t.lieu }}</label>
+<input name="lieu"><br><br>
+
+<label>{{ t.date_naissance }}</label>
+<input name="date_naissance"><br><br>
+
+<button type="submit">{{ t.generate }}</button>
+
+</form>
+
+<p>{{ t.privacy }}</p>
+
+</body>
+</html>
