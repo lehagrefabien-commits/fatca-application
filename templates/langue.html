@@ -3,10 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>
-    {% if lang == "nl" %}FATCA-akkoord – Juridische context{% else %}Accord FATCA – Contexte juridique{% endif %}
-  </title>
+  <title>Accord FATCA – Contexte juridique</title>
 
   <style>
     :root{
@@ -26,6 +23,7 @@
       color: var(--text);
       min-height:100vh;
     }
+
     .topbar{
       height:64px;
       display:flex;
@@ -34,65 +32,78 @@
       padding: 0 22px;
       border-bottom: 1px solid var(--line);
     }
-    .brand{
-      font-weight:800;
+    .brand{ font-weight:800; letter-spacing:-0.2px; }
+    .right{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+    }
+    .langlinks a{
+      color: var(--muted);
+      text-decoration:none;
+      margin-left: 10px;
+      font-weight: 900;
       letter-spacing:-0.2px;
     }
-    .logo{
-      height:52px;
-      width:auto;
-      display:block;
-    }
+    .langlinks a:hover{ text-decoration: underline; }
+    .logo{ height:52px; width:auto; display:block; }
+
     .wrap{
       max-width: 980px;
       margin: 0 auto;
       padding: 46px 22px 70px 22px;
     }
     .card{
-      max-width: 760px;
+      max-width: 860px;
       margin: 0 auto;
       padding: 40px 30px;
       border: 1px solid var(--line);
       border-radius: 18px;
       background:#fff;
     }
+
     h1{
-      margin:0 0 10px 0;
+      margin:0 0 14px 0;
       font-size: clamp(24px, 3vw, 34px);
       line-height:1.15;
       letter-spacing:-0.5px;
     }
+
     .context{
-      margin-top: 18px;
       color: var(--muted);
       font-size: 16px;
-      line-height:1.75;
+      line-height:1.8;
     }
-    .actions{
-      margin-top: 26px;
-      display:flex;
-      gap: 12px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
+
+    .actions{ margin-top: 26px; display:flex; gap: 12px; flex-wrap: wrap; }
+
     a.btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      height: 44px;
+      height: 46px;
       padding: 0 18px;
       border-radius: 12px;
       text-decoration:none;
-      font-weight:800;
+      font-weight:900;
       background: var(--btn);
       color: var(--btnText);
       border: 1px solid rgba(17,24,39,0.95);
       box-shadow: 0 10px 24px rgba(15,23,42,0.12);
     }
-    a.btn:hover{ opacity: 0.95; }
-    .small{
-      font-size: 13px;
-      color: var(--muted);
+    a.btn:hover{ opacity:0.95; }
+
+    a.btn.secondary{
+      background:#fff;
+      color: var(--text);
+      border: 1px solid var(--line);
+      box-shadow: none;
+      font-weight:900;
+    }
+    a.btn.secondary:hover{ background: rgba(15,23,42,0.02); }
+
+    @media (max-width: 860px){
+      .card{ padding: 32px 18px; }
     }
   </style>
 </head>
@@ -100,33 +111,28 @@
 <body>
   <div class="topbar">
     <div class="brand">FATCA • RGPD • Belgique</div>
-    <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+
+    <div class="right">
+      <div class="langlinks">
+        <a href="/context/fr">FR</a>
+        <a href="/context/nl">NL</a>
+      </div>
+      <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+    </div>
   </div>
 
   <div class="wrap">
     <div class="card">
-
-      <h1>
-        {% if lang == "nl" %}FATCA-akkoord – Juridische context{% else %}Accord FATCA – Contexte juridique{% endif %}
-      </h1>
+      <h1>Accord FATCA – Contexte juridique</h1>
 
       <div class="context">
         {{ context_text | safe }}
       </div>
 
       <div class="actions">
-        <a class="btn" href="/{{ lang }}">
-          {% if lang == "nl" %}Verder{% else %}Continuer{% endif %} →
-        </a>
-        <div class="small">
-          {% if lang == "nl" %}
-            U gaat nu door naar het formulier.
-          {% else %}
-            Vous allez maintenant accéder au formulaire.
-          {% endif %}
-        </div>
+        <a class="btn" href="/{{ lang }}">Continuer →</a>
+        <a class="btn secondary" href="/">← Retour</a>
       </div>
-
     </div>
   </div>
 </body>
