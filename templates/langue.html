@@ -16,7 +16,6 @@
     .context { margin-bottom: 30px; }
     a.btn {
       display:inline-block;
-      margin-right:16px;
       padding:14px 18px;
       border:1px solid #000;
       text-decoration:none;
@@ -30,11 +29,10 @@
 <h1>Accord FATCA – Contexte juridique</h1>
 
 <div class="context">
-{{ context_text }}
+  {{ context_text|safe }}
 </div>
 
-<a class="btn" href="/fr">Français</a>
-<a class="btn" href="/nl">Nederlands</a>
+<a class="btn" href="/{{ lang }}">Continuer</a>
 
 </body>
 </html>
