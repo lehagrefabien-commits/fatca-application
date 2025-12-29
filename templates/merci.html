@@ -183,31 +183,86 @@
         </div>
 
         <!-- A PROPOS (toujours visible à droite) -->
-        <aside class="don-about">
-          <h3>À propos</h3>
+    <aside class="don-about">
+  <img src="{{ url_for('static', filename='img/fatca-combat.jpg') }}"
+       alt="Combat contre FATCA"
+       class="about-image">
 
-          <img src="{{ url_for('static', filename='img/fatca-combat.jpg') }}"
-               alt="Combat contre FATCA"
-               class="about-image">
+  {% if lang == "fr" %}
 
-          <p>
-            <strong>Soutenir l’AAA, c’est combattre FATCA en Europe.</strong>
-          </p>
+    <p><strong>Soutenir l’AAA, c’est combattre FATCA en Europe</strong></p>
 
-          <p>
-            L’Association des Américains Accidentels (AAA) mène depuis plusieurs années
-            un combat juridique et politique contre FATCA, une loi américaine aux effets
-            extraterritoriaux portant atteinte aux droits fondamentaux et à la protection
-            des données personnelles en Europe.
-          </p>
+    <p>
+      L’Association des Américains Accidentels (AAA) mène depuis plusieurs années un combat
+      juridique et politique contre FATCA, une loi américaine aux effets extraterritoriaux
+      portant atteinte aux droits fondamentaux et à la protection des données personnelles
+      en Europe.
+    </p>
 
-          <p>
-            Par ses actions devant les autorités nationales et européennes, l’AAA a
-            contribué à faire émerger un enjeu majeur : la compatibilité des transferts
-            massifs de données financières vers les États-Unis avec le RGPD et le respect
-            de la vie privée.
-          </p>
-        </aside>
+    <p>
+      Par ses actions devant les autorités nationales et européennes, l’AAA a contribué à
+      faire émerger un enjeu majeur : la compatibilité des transferts massifs de données
+      financières vers les États-Unis avec le RGPD et le respect de la vie privée.
+    </p>
+
+    <p>
+      👉 La prochaine étape est décisive : la question est désormais portée devant la Cour
+      de justice de l’Union européenne (CJUE), appelée à se prononcer sur la conformité de
+      FATCA avec le droit européen.
+    </p>
+
+    <p>L’AAA agit concrètement pour :</p>
+    <ul class="about-ul">
+      <li>défendre les personnes victimes de FATCA,</li>
+      <li>dénoncer les pratiques bancaires discriminatoires,</li>
+      <li>et faire prévaloir le droit européen face à une législation étrangère intrusive.</li>
+    </ul>
+
+    <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
+    <p class="about-cta">
+      👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne et refuser
+      l’extraterritorialité abusive de FATCA.
+    </p>
+
+  {% elif lang == "nl" %}
+
+    <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
+
+    <p>
+      De Association des Américains Accidentels (AAA) voert al meerdere jaren een juridische
+      en politieke strijd tegen FATCA, een Amerikaanse wet met extraterritoriale gevolgen
+      die fundamentele rechten en de bescherming van persoonsgegevens in Europa ondermijnt.
+    </p>
+
+    <p>
+      Door haar acties bij nationale en Europese autoriteiten heeft de AAA bijgedragen aan
+      het centraal stellen van een cruciale vraag: of de massale overdracht van financiële
+      gegevens naar de Verenigde Staten verenigbaar is met de AVG en het recht op privacy
+      respecteert.
+    </p>
+
+    <p>
+      👉 De volgende stap is beslissend: de kwestie ligt nu voor bij het Hof van Justitie
+      van de Europese Unie (HvJ-EU), dat zich zal uitspreken over de verenigbaarheid van
+      FATCA met het Europees recht.
+    </p>
+
+    <p>De AAA onderneemt concrete acties om:</p>
+    <ul class="about-ul">
+      <li>personen die door FATCA worden getroffen te verdedigen,</li>
+      <li>discriminerende bankpraktijken aan te vechten,</li>
+      <li>en het Europees recht te laten primeren boven buitenlandse, intrusieve wetgeving.</li>
+    </ul>
+
+    <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
+    <p class="about-cta">
+      👉 De AAA steunen betekent de Europese rechtssoevereiniteit verdedigen en de
+      buitensporige extraterritoriale werking van FATCA afwijzen.
+    </p>
+
+  {% endif %}
+</aside>
+
 
       </div>
 
