@@ -7,88 +7,113 @@
 
   <style>
     :root{
-      --bg:#0b1220; 
-      --card:#111c36; 
-      --text:#e8eefc; 
-      --muted:#b8c6e6; 
-      --border:rgba(255,255,255,0.14);
-      --white:#ffffff;
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line: rgba(15, 23, 42, 0.12);
+      --btn:#111827;
+      --btnText:#ffffff;
+      --focus: rgba(99, 102, 241, 0.25);
     }
     *{ box-sizing:border-box; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1200px 600px at 20% 10%, #1a2a52 0%, transparent 60%),
-                  radial-gradient(1000px 600px at 80% 0%, #243a6b 0%, transparent 55%),
-                  var(--bg);
+      background: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      min-height:100vh;
+    }
+    .topbar{
+      height:64px;
       display:flex;
       align-items:center;
-      justify-content:center;
-      padding: 28px 16px;
+      justify-content:space-between;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
     }
-    .wrap{ width:100%; max-width: 960px; }
+    .brand{ font-weight:800; letter-spacing:-0.2px; }
+    .logo{ height:34px; width:auto; display:block; }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 46px 22px 70px 22px;
+    }
     .card{
-      background: rgba(17,28,54,0.9);
-      border: 1px solid var(--border);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 30px;
+      border: 1px solid var(--line);
       border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
-      backdrop-filter: blur(6px);
+      background:#fff;
     }
     h1{
-      margin-top:0;
-      font-size: clamp(22px, 3vw, 30px);
-      letter-spacing:-0.3px;
+      margin:0 0 10px 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height:1.15;
+      letter-spacing:-0.5px;
     }
     p{
+      margin: 0 0 18px 0;
       color: var(--muted);
-      line-height:1.6;
-      max-width: 85ch;
+      font-size: 16px;
+      line-height:1.7;
     }
-    .actions{
-      margin: 18px 0 28px 0;
-    }
+    .actions{ margin: 18px 0 28px 0; }
     a.btn{
-      display:inline-block;
-      padding:14px 18px;
-      border-radius:12px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
       text-decoration:none;
-      font-weight:800;
-      background: var(--white);
-      color:#0b1220;
+      font-weight:900;
+      background: var(--btn);
+      color: var(--btnText);
+      border: 1px solid rgba(17,24,39,0.95);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.12);
     }
+    a.btn:hover{ opacity:0.95; }
+
     .divider{
       margin: 32px 0 18px 0;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--line);
+    }
+    h2{
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      letter-spacing:-0.2px;
     }
     .rgpd{
       margin-top: 16px;
       font-size: 13px;
       color: var(--muted);
-      line-height:1.45;
+      line-height:1.55;
       max-width: 95ch;
     }
   </style>
 </head>
+
 <body>
+  <div class="topbar">
+    <div class="brand">FATCA • RGPD • Belgique</div>
+    <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+  </div>
 
   <div class="wrap">
     <div class="card">
 
       <h1>{{ t.ready_title }}</h1>
-
       <p>{{ t.ready_sub }}</p>
 
       <div class="actions">
-        <a class="btn" href="{{ download_url }}">{{ t.download }}</a>
+        <a class="btn" href="{{ download_url }}">{{ t.download }} →</a>
       </div>
 
       <div class="divider"></div>
 
       <h2>{{ t.support_title }}</h2>
-
       <p>{{ t.support_sub }}</p>
 
       <!-- IFRAME DON AAA -->
@@ -99,7 +124,6 @@
 
       <script src="https://www.americains-accidentels.fr/public/build/js/iframe.js"></script>
 
-      <!-- MENTION RGPD AAA -->
       <p class="rgpd">
         Les informations renseignées dans le cadre du formulaire de don sont collectées
         et traitées par l’Association des Américains Accidentels (AAA), en qualité de responsable
@@ -108,6 +132,5 @@
 
     </div>
   </div>
-
 </body>
 </html>
