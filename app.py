@@ -189,14 +189,15 @@ def generate():
     adresse = request.form.get("adresse", "").strip()
     code_postal = request.form.get("code_postal", "").strip()
     ville = request.form.get("ville", "").strip()
+    pays = request.form.get("pays", "").strip()
     date_naissance = request.form.get("date_naissance", "").strip()
+    ville_naissance = request.form.get("ville_naissance", "").strip()
+    pays_naissance = request.form.get("pays_naissance", "").strip()
 
-    if not all([prenom, nom, adresse, code_postal, ville, date_naissance]):
+    if not all([prenom, nom, adresse, code_postal, ville, pays, date_naissance, ville_naissance, pays_naissance]):
         abort(400, "Champs manquants. Merci de compléter tous les champs.")
 
-    nom_prenom = f"{prenom} {nom}"
     cp_ville = f"{code_postal} {ville}"
-    lieu = ville  # Lieu = ville de l'expéditeur
 
     template_filename = "template_fr.docx" if lang == "fr" else "template_nl.docx"
     template_path = os.path.join(APP_DIR, "templates", "word_templates", template_filename)
@@ -205,37 +206,26 @@ def generate():
 
     date_courrier = datetime.now().strftime("%d/%m/%Y")
 
+    # --- Variables attendues par les nouveaux templates Word ---
     mapping = {
-        "{{NOM_PRENOM}}": nom_prenom,
+        "{{PRENOM}}": prenom,
+        "{{NOM}}": nom,
         "{{ADRESSE}}": adresse,
         "{{CP_VILLE}}": cp_ville,
-        "{{LIEU}}": lieu,
+        "{{PAYS}}": pays,
+        "{{VILLE}}": ville,
         "{{DATE}}": date_courrier,
         "{{DATE_NAISSANCE}}": date_naissance,
+        "{{VILLE_NAISSANCE}}": ville_naissance,
+        "{{PAYS_NAISSANCE}}": pays_naissance,
     }
 
+    # --- Gestion du "né / née" en FR + valeur NL ---
     if lang == "fr":
-        if civilite == "F":
-            mapping.update({
-                "{{APPEL}}": "Madame, Monsieur",
-                "{{SOUSSIGNE}}": "soussignée",
-                "{{NE}}": "née",
-                "{{RESIDENT_FISCAL}}": "résidente fiscale",
-            })
-        else:
-            mapping.update({
-                "{{APPEL}}": "Madame, Monsieur",
-                "{{SOUSSIGNE}}": "soussigné",
-                "{{NE}}": "né",
-                "{{RESIDENT_FISCAL}}": "résident fiscal",
-            })
+        mapping["{{NE}}"] = "née" if civilite == "F" else "né"
     else:
-        mapping.update({
-            "{{APPEL}}": "Geachte heer, mevrouw",
-            "{{SOUSSIGNE}}": "ondergetekende",
-            "{{NE}}": "geboren",
-            "{{RESIDENT_FISCAL}}": "fiscaal inwoner",
-        })
+        # NL: forme neutre standard
+        mapping["{{NE}}"] = "geboren"
 
     doc = Document(template_path)
     _replace_in_doc(doc, mapping)
@@ -245,7 +235,8 @@ def generate():
     doc.save(output_path)
 
     download_url = url_for("download", token=token)
-    return render_template("merci.html", download_url=download_url, t=TEXTS[lang], lang=lang)
+    return render_template("merci.html", download_url=download_url, t=TEXTS[lang])
+
 
 @app.route("/download/<token>", methods=["GET"])
 def download(token: str):
