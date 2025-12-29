@@ -1,54 +1,159 @@
 <!doctype html>
-<html lang="fr">
+<html lang="und">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Choix de langue – FATCA</title>
+  <title>Language / Taal – FATCA</title>
+
   <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line: rgba(15, 23, 42, 0.12);
+      --btn:#111827;
+      --btnText:#ffffff;
+      --focus: rgba(99, 102, 241, 0.25);
+    }
+    *{ box-sizing:border-box; }
     body{
       margin:0;
-      font-family: Arial, sans-serif;
-      background:#0b1220;
-      color:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: var(--bg);
+      color: var(--text);
+      min-height:100vh;
+    }
+    .topbar{
+      height:64px;
       display:flex;
       align-items:center;
-      justify-content:center;
-      min-height:100vh;
-      text-align:center;
+      justify-content:space-between;
+      padding: 0 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand{
+      font-weight:800;
+      letter-spacing:-0.2px;
+    }
+    .logo{
+      height:34px;
+      width:auto;
+      display:block;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 22px;
     }
     .card{
-      background:#111c36;
-      border-radius:16px;
-      padding:32px 28px;
-      max-width:460px;
-      width:90%;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 42px 30px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
     }
-    h1{ margin-top:0; }
-    p{ color:#c7d3ff; line-height:1.5; }
-    a.btn{
-      display:block;
-      margin-top:14px;
-      padding:14px;
-      border-radius:10px;
+    h1{
+      margin:0 0 10px 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height:1.15;
+      letter-spacing:-0.5px;
+    }
+    p{
+      margin:0 0 26px 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height:1.6;
+    }
+    .choices{
+      display:grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    a.choice{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
       text-decoration:none;
-      font-weight:700;
+      color: var(--text);
       background:#fff;
-      color:#0b1220;
+      transition: transform .06s ease, box-shadow .12s ease;
     }
-    a.btn.alt{
-      background:transparent;
-      color:#fff;
-      border:1px solid #fff;
+    a.choice:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15,23,42,0.08);
+    }
+    .kbd{
+      font-weight:800;
+      font-size: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 6px 8px;
+      color: var(--muted);
+      background: #f8fafc;
+      min-width: 36px;
+      text-align:center;
+    }
+    .label{
+      font-weight:750;
+      font-size: 16px;
+    }
+    .arrow{
+      color: var(--muted);
+      font-weight:900;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .hint{
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .hint code{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius: 8px;
+      padding: 2px 6px;
     }
   </style>
 </head>
-<body>
-  <div class="card">
-    <h1>Language / Taal</h1>
-    <p>Please choose your language<br>Kies uw taal</p>
 
-    <a class="btn" href="/context/fr">Français</a>
-    <a class="btn alt" href="/context/nl">Nederlands</a>
+<body>
+  <div class="topbar">
+    <div class="brand">FATCA • RGPD</div>
+    <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Language / Taal</h1>
+      <p>Please choose your language.<br>Kies uw taal.</p>
+
+      <div class="choices">
+        <a class="choice" href="/context/fr">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="kbd">A</div>
+            <div class="label">Français</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+
+        <a class="choice" href="/context/nl">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div class="kbd">B</div>
+            <div class="label">Nederlands</div>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+
+      <div class="hint">Tip: you can navigate fast with keyboard-style choices.</div>
+    </div>
   </div>
 </body>
 </html>
