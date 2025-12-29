@@ -124,9 +124,8 @@ def _replace_in_doc(doc: Document, mapping: dict):
 # =========================
 @app.route("/", methods=["GET"])
 def home():
-    # Par défaut, on affiche le contexte en français.
-    # L'utilisateur choisit ensuite FR/NL via les boutons.
-    return render_template("langue.html", context_text=CONTEXT["fr"])
+    # Page neutre : choix de la langue AVANT affichage du texte
+    return render_template("lang_select.html")
 
 
 @app.route("/fr", methods=["GET"])
