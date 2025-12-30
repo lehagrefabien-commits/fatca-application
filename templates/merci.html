@@ -13,7 +13,6 @@
       --line: rgba(15, 23, 42, 0.12);
       --btn:#111827;
       --btnText:#ffffff;
-      --focus: rgba(99, 102, 241, 0.25);
     }
     *{ box-sizing:border-box; }
     body{
@@ -23,6 +22,8 @@
       color: var(--text);
       min-height:100vh;
     }
+
+    /* ===== TOP BAR ===== */
     .topbar{
       height:64px;
       display:flex;
@@ -34,6 +35,7 @@
     .brand{ font-weight:800; letter-spacing:-0.2px; }
     .logo{ height:52px; width:auto; display:block; }
 
+    /* ===== LAYOUT ===== */
     .wrap{
       max-width: 980px;
       margin: 0 auto;
@@ -47,6 +49,7 @@
       border-radius: 18px;
       background:#fff;
     }
+
     h1{
       margin:0 0 10px 0;
       font-size: clamp(24px, 3vw, 34px);
@@ -59,6 +62,7 @@
       font-size: 16px;
       line-height:1.7;
     }
+
     .actions{ margin: 18px 0 28px 0; }
     a.btn{
       display:inline-flex;
@@ -85,60 +89,75 @@
       font-size: 18px;
       letter-spacing:-0.2px;
     }
-    .rgpd{
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height:1.55;
-      max-width: 95ch;
-    }
 
-    /* ====== DON + A PROPOS (colonne droite) ====== */
+    /* ===== DON + A PROPOS ===== */
     .don-layout{
       display: grid;
-      grid-template-columns: 1fr 360px;
+      grid-template-columns: minmax(0, 1fr) 360px;
       gap: 24px;
       align-items: start;
-      margin-top: 10px;
+      margin-top: 12px;
+    }
+    .don-main{ min-width: 0; }
+
+    .iframe-asc-container{
+      width:100% !important;
+      max-width:100% !important;
     }
 
     .don-about{
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 18px;
-      background: #fff;
-      color: var(--text);
+      background: #ffffff;
       position: sticky;
       top: 24px;
     }
 
-    .don-about h3{
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      letter-spacing: -0.2px;
+    .about-image{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      margin-bottom:14px;
+      border:1px solid var(--line);
     }
 
     .don-about p{
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.65;
-      margin: 0 0 12px 0;
+      font-size:14px;
+      line-height:1.7;
+      color:var(--muted);
+      margin:0 0 12px 0;
     }
-
     .don-about p strong{
-      color: var(--text);
+      color:var(--text);
+      font-weight:900;
     }
 
-    .about-image{
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display:block;
-      margin: 12px 0 14px 0;
-      border: 1px solid var(--line);
+    .about-ul{
+      margin:8px 0 12px 18px;
+      padding:0;
+      font-size:14px;
+      line-height:1.7;
+      color:var(--muted);
+    }
+    .about-ul li{ margin:6px 0; }
+
+    .about-cta{
+      font-size:14px;
+      line-height:1.7;
+      margin-top:8px;
     }
 
-    /* Responsive */
+    .rgpd{
+      margin-top:16px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.55;
+      max-width:95ch;
+    }
+
+    /* ===== MOBILE ===== */
     @media (max-width: 900px){
       .don-layout{
         grid-template-columns: 1fr;
@@ -146,11 +165,15 @@
       .don-about{
         position: static;
       }
+      .card{
+        max-width: 860px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <div class="topbar">
     <div class="brand">FATCA • RGPD • Belgique</div>
     <img class="logo" src="/static/aaa-logo.png" alt="AAA">
@@ -171,7 +194,6 @@
       <h2>{{ t.support_title }}</h2>
       <p>{{ t.support_sub }}</p>
 
-      <!-- CONTAINER DON + A PROPOS -->
       <div class="don-layout">
 
         <!-- DON -->
@@ -182,87 +204,81 @@
           </div>
         </div>
 
-        <!-- A PROPOS (toujours visible à droite) -->
-    <aside class="don-about">
-  <img src="{{ url_for('static', filename='img/fatca-combat.jpg') }}"
-       alt="Combat contre FATCA"
-       class="about-image">
+        <!-- A PROPOS -->
+        <aside class="don-about">
+          <img src="{{ url_for('static', filename='img/fatca-combat.jpg') }}"
+               alt="Combat contre FATCA"
+               class="about-image">
 
-  {% if lang == "fr" %}
+          {% if lang == "fr" %}
 
-    <p><strong>Soutenir l’AAA, c’est combattre FATCA en Europe</strong></p>
+            <p><strong>Soutenir l’AAA, c’est combattre FATCA en Europe</strong></p>
 
-    <p>
-      L’Association des Américains Accidentels (AAA) mène depuis plusieurs années un combat
-      juridique et politique contre FATCA, une loi américaine aux effets extraterritoriaux
-      portant atteinte aux droits fondamentaux et à la protection des données personnelles
-      en Europe.
-    </p>
+            <p>
+              L’Association des Américains Accidentels (AAA) mène depuis plusieurs années un combat
+              juridique et politique contre FATCA, une loi américaine aux effets extraterritoriaux
+              portant atteinte aux droits fondamentaux et à la protection des données personnelles
+              en Europe.
+            </p>
 
-    <p>
-      Par ses actions devant les autorités nationales et européennes, l’AAA a contribué à
-      faire émerger un enjeu majeur : la compatibilité des transferts massifs de données
-      financières vers les États-Unis avec le RGPD et le respect de la vie privée.
-    </p>
+            <p>
+              Par ses actions devant les autorités nationales et européennes, l’AAA a contribué à
+              faire émerger un enjeu majeur : la compatibilité des transferts massifs de données
+              financières vers les États-Unis avec le RGPD et le respect de la vie privée.
+            </p>
 
-    <p>
-      👉 La prochaine étape est décisive : la question est désormais portée devant la Cour
-      de justice de l’Union européenne (CJUE), appelée à se prononcer sur la conformité de
-      FATCA avec le droit européen.
-    </p>
+            <p>
+              👉 La prochaine étape est décisive : la question est désormais portée devant la Cour
+              de justice de l’Union européenne (CJUE).
+            </p>
 
-    <p>L’AAA agit concrètement pour :</p>
-    <ul class="about-ul">
-      <li>défendre les personnes victimes de FATCA,</li>
-      <li>dénoncer les pratiques bancaires discriminatoires,</li>
-      <li>et faire prévaloir le droit européen face à une législation étrangère intrusive.</li>
-    </ul>
+            <p>L’AAA agit concrètement pour :</p>
+            <ul class="about-ul">
+              <li>défendre les personnes victimes de FATCA,</li>
+              <li>dénoncer les pratiques bancaires discriminatoires,</li>
+              <li>faire prévaloir le droit européen face à une législation étrangère intrusive.</li>
+            </ul>
 
-    <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
-    <p class="about-cta">
-      👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne et refuser
-      l’extraterritorialité abusive de FATCA.
-    </p>
+            <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
+            <p class="about-cta">
+              👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne.
+            </p>
 
-  {% elif lang == "nl" %}
+          {% elif lang == "nl" %}
 
-    <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
+            <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
 
-    <p>
-      De Association des Américains Accidentels (AAA) voert al meerdere jaren een juridische
-      en politieke strijd tegen FATCA, een Amerikaanse wet met extraterritoriale gevolgen
-      die fundamentele rechten en de bescherming van persoonsgegevens in Europa ondermijnt.
-    </p>
+            <p>
+              De Association des Américains Accidentels (AAA) voert al meerdere jaren een juridische
+              en politieke strijd tegen FATCA, een Amerikaanse wet met extraterritoriale gevolgen
+              die fundamentele rechten en de bescherming van persoonsgegevens in Europa ondermijnt.
+            </p>
 
-    <p>
-      Door haar acties bij nationale en Europese autoriteiten heeft de AAA bijgedragen aan
-      het centraal stellen van een cruciale vraag: of de massale overdracht van financiële
-      gegevens naar de Verenigde Staten verenigbaar is met de AVG en het recht op privacy
-      respecteert.
-    </p>
+            <p>
+              Door haar acties bij nationale en Europese autoriteiten heeft de AAA bijgedragen aan
+              het centraal stellen van een cruciale vraag: of de massale overdracht van financiële
+              gegevens naar de Verenigde Staten verenigbaar is met de AVG.
+            </p>
 
-    <p>
-      👉 De volgende stap is beslissend: de kwestie ligt nu voor bij het Hof van Justitie
-      van de Europese Unie (HvJ-EU), dat zich zal uitspreken over de verenigbaarheid van
-      FATCA met het Europees recht.
-    </p>
+            <p>
+              👉 De volgende stap is beslissend: de zaak ligt nu voor bij het Hof van Justitie van
+              de Europese Unie (HvJ-EU).
+            </p>
 
-    <p>De AAA onderneemt concrete acties om:</p>
-    <ul class="about-ul">
-      <li>personen die door FATCA worden getroffen te verdedigen,</li>
-      <li>discriminerende bankpraktijken aan te vechten,</li>
-      <li>en het Europees recht te laten primeren boven buitenlandse, intrusieve wetgeving.</li>
-    </ul>
+            <p>De AAA onderneemt concrete acties om:</p>
+            <ul class="about-ul">
+              <li>personen die door FATCA worden getroffen te verdedigen,</li>
+              <li>discriminerende bankpraktijken aan te vechten,</li>
+              <li>het Europees recht te laten primeren.</li>
+            </ul>
 
-    <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
-    <p class="about-cta">
-      👉 De AAA steunen betekent de Europese rechtssoevereiniteit verdedigen en de
-      buitensporige extraterritoriale werking van FATCA afwijzen.
-    </p>
+            <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
+            <p class="about-cta">
+              👉 De AAA steunen betekent de Europese rechtssoevereiniteit verdedigen.
+            </p>
 
-  {% endif %}
-</aside>
-
+          {% endif %}
+        </aside>
 
       </div>
 
@@ -276,5 +292,6 @@
 
     </div>
   </div>
+
 </body>
 </html>
