@@ -76,28 +76,35 @@
       border: 1px solid rgba(17,24,39,0.95);
       box-shadow: 0 10px 24px rgba(15,23,42,0.12);
     }
-    a.btn:hover{ opacity:0.95; }
 
     .divider{
       margin: 32px 0 18px 0;
       border-top: 1px solid var(--line);
     }
     h2{
-      margin: 0 0 10px 0;
+      margin: 0 0 16px 0;
       font-size: 18px;
       letter-spacing:-0.2px;
     }
 
-    /* ===== DON + A PROPOS : FIX DUR ===== */
-    .don-layout{
-      display:grid;
-      grid-template-columns: minmax(0, 1fr) 380px;
-      gap: 24px;
-      align-items:start;
-      margin-top: 12px;
+    /* IMAGE AU-DESSUS DES 2 BLOCS */
+    .hero-image{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:14px;
+      border:1px solid var(--line);
+      margin: 6px 0 22px 0;
     }
 
-    /* Empêche le widget de casser la grille */
+    /* LAYOUT DON + A PROPOS */
+    .don-layout{
+      display:grid;
+      grid-template-columns: minmax(0,1fr) 380px;
+      gap:24px;
+      align-items:start;
+    }
+
     .don-main{ min-width:0; }
     .iframe-asc-container{
       width:100% !important;
@@ -105,64 +112,53 @@
       overflow:hidden !important;
     }
 
-    /* A PROPOS */
     .don-about{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 18px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:18px;
       background:#fff;
-      position: sticky;
-      top: 24px;
-    }
-
-    .about-image{
-      width:100%;
-      height:auto;
-      display:block;
-      border-radius:12px;
-      margin: 0 0 14px 0;
-      border: 1px solid var(--line);
-      background: #f8fafc;
+      position:sticky;
+      top:24px;
     }
 
     .don-about p{
       margin:0 0 12px 0;
-      color: var(--muted);
+      color:var(--muted);
       font-size:14px;
       line-height:1.7;
     }
-    .don-about p strong{ color: var(--text); font-weight: 900; }
+    .don-about p strong{
+      color:var(--text);
+      font-weight:900;
+    }
 
     .about-ul{
-      margin: 8px 0 12px 18px;
-      padding: 0;
-      color: var(--muted);
+      margin:8px 0 12px 18px;
+      padding:0;
       font-size:14px;
+      color:var(--muted);
       line-height:1.7;
     }
-    .about-ul li{ margin: 6px 0; }
+    .about-ul li{ margin:6px 0; }
 
     .about-cta{
-      margin-top: 8px;
+      margin-top:8px;
       font-size:14px;
+      color:var(--muted);
       line-height:1.7;
-      color: var(--muted);
     }
 
     .rgpd{
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--muted);
+      margin-top:18px;
+      font-size:13px;
+      color:var(--muted);
       line-height:1.55;
-      max-width: 95ch;
+      max-width:95ch;
     }
 
-    @media (max-width: 980px){
-      .card{ padding: 32px 18px; }
-    }
     @media (max-width: 900px){
-      .don-layout{ grid-template-columns: 1fr; }
-      .don-about{ position: static; }
+      .don-layout{ grid-template-columns:1fr; }
+      .don-about{ position:static; }
     }
   </style>
 </head>
@@ -188,38 +184,22 @@
 
       <h2>{{ t.support_title }}</h2>
 
+      <!-- IMAGE -->
+      <img class="hero-image"
+           src="{{ url_for('static', filename='fatca-combat.jpg') }}"
+           alt="Combat contre FATCA">
+
       <div class="don-layout">
 
-        <!-- DON (IMPORTANT : div + data-* requis) -->
+        <!-- DON -->
         <div class="don-main">
           <div class="iframe-asc-container"
                data-type="collect"
                data-collect-id="01KDMS06DAP5ABR1CQM508SWRS"></div>
         </div>
 
-        <!-- A PROPOS (toujours visible) -->
+        <!-- A PROPOS -->
         <aside class="don-about">
-
-          <!-- Image embarquée (base64) : aucune dépendance à static/img -->
-          <img class="about-image"
-               alt="Combat contre FATCA"
-               src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>\
-<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='750'>\
-<defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>\
-<stop offset='0' stop-color='%230f172a'/>\
-<stop offset='1' stop-color='%231e293b'/>\
-</linearGradient></defs>\
-<rect width='1200' height='750' fill='url(%23g)'/>\
-<rect x='70' y='70' width='1060' height='610' rx='36' fill='rgba(255,255,255,0.06)' stroke='rgba(255,255,255,0.18)'/>\
-<text x='120' y='210' font-family='Arial' font-size='54' fill='white' font-weight='700'>Combat contre FATCA</text>\
-<text x='120' y='290' font-family='Arial' font-size='28' fill='rgba(255,255,255,0.82)'>Protection des données • RGPD • Europe</text>\
-<path d='M170 420 h260' stroke='rgba(255,255,255,0.65)' stroke-width='14' stroke-linecap='round'/>\
-<path d='M470 420 h260' stroke='rgba(255,255,255,0.65)' stroke-width='14' stroke-linecap='round'/>\
-<path d='M770 420 h260' stroke='rgba(255,255,255,0.65)' stroke-width='14' stroke-linecap='round'/>\
-<circle cx='300' cy='520' r='80' fill='rgba(255,255,255,0.10)' stroke='rgba(255,255,255,0.25)'/>\
-<circle cx='600' cy='520' r='80' fill='rgba(255,255,255,0.10)' stroke='rgba(255,255,255,0.25)'/>\
-<circle cx='900' cy='520' r='80' fill='rgba(255,255,255,0.10)' stroke='rgba(255,255,255,0.25)'/>\
-</svg>">
 
           {% set page_lang = lang|default('fr') %}
 
@@ -249,7 +229,7 @@
             <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
             <p class="about-cta">👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne et refuser l’extraterritorialité abusive de FATCA.</p>
 
-          {% elif page_lang == "nl" %}
+          {% else %}
 
             <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
 
@@ -269,7 +249,7 @@
             <ul class="about-ul">
               <li>personen die door FATCA worden getroffen te verdedigen,</li>
               <li>discriminerende bankpraktijken aan te vechten,</li>
-              <li>en het Europees recht te laten primeren boven buitenlandse, intrusieve wetgeving.</li>
+              <li>en het Europees recht te laten primeren boven buitenlandse wetgeving.</li>
             </ul>
 
             <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
@@ -281,13 +261,13 @@
 
       </div>
 
-      <!-- IMPORTANT : script requis pour rendre le widget -->
+      <!-- SCRIPT OBLIGATOIRE -->
       <script src="https://www.americains-accidentels.fr/public/build/js/iframe.js"></script>
 
       <p class="rgpd">
         Les informations renseignées dans le cadre du formulaire de don sont collectées
-        et traitées par l’Association des Américains Accidentels (AAA), en qualité de responsable
-        de traitement, conformément à sa politique de confidentialité.
+        et traitées par l’Association des Américains Accidentels (AAA), conformément à sa
+        politique de confidentialité.
       </p>
 
     </div>
