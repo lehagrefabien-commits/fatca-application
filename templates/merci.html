@@ -7,14 +7,24 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --line: rgba(15, 23, 42, 0.12);
-      --btn:#111827;
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --text:#0b1220;
+      --muted:#5b6477;
+      --line: rgba(11, 18, 32, 0.10);
+      --shadow: 0 28px 90px rgba(11,18,32,0.12);
+      --shadowSoft: 0 18px 60px rgba(11,18,32,0.10);
+      --btn:#0b1220;
       --btnText:#ffffff;
+      --chipBg: rgba(11,18,32,0.045);
+      --chipLine: rgba(11,18,32,0.10);
+      --radius: 24px;
+      --radiusSm: 18px;
+      --focus: rgba(99,102,241,0.18);
     }
+
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
@@ -23,246 +33,382 @@
       min-height:100vh;
     }
 
+    /* Subtle premium background */
+    .bgfx{
+      position: fixed;
+      inset: -200px;
+      z-index: -1;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 15% 8%, rgba(99,102,241,0.18) 0%, transparent 62%),
+        radial-gradient(900px 520px at 85% 12%, rgba(16,185,129,0.14) 0%, transparent 58%),
+        radial-gradient(900px 520px at 50% 78%, rgba(56,189,248,0.10) 0%, transparent 60%);
+      filter: blur(2px);
+    }
+
+    /* Topbar */
     .topbar{
-      height:64px;
+      height: 66px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       padding: 0 22px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(11,18,32,0.08);
+      background: rgba(246,247,251,0.78);
+      backdrop-filter: blur(10px);
     }
-    .brand{ font-weight:800; letter-spacing:-0.2px; }
-    .logo{ height:52px; width:auto; display:block; }
 
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 46px 22px 70px 22px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 950;
+      letter-spacing: -0.2px;
+      font-size: 13px;
+      color: rgba(11,18,32,0.85);
     }
-    .card{
-      max-width: 860px;
+    .brand .sep{
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(11,18,32,0.22);
+    }
+
+    .logo-link{
+      display:flex;
+      align-items:center;
+      text-decoration:none;
+      border-radius: 14px;
+      padding: 6px 8px;
+      transition: transform .12s ease, opacity .12s ease, background .12s ease;
+    }
+    .logo-link:hover{
+      background: rgba(11,18,32,0.04);
+      transform: translateY(-1px);
+    }
+    .logo{
+      height: 46px;
+      width:auto;
+      display:block;
+    }
+
+    /* Layout */
+    .wrap{
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 40px 30px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background:#fff;
+      padding: 28px 18px 86px 18px;
+    }
+
+    .card{
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid rgba(11,18,32,0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      animation: pop .26s ease-out both;
+    }
+
+    @keyframes pop{
+      from{ opacity:0; transform: translateY(10px); }
+      to{ opacity:1; transform: translateY(0); }
+    }
+
+    .card-inner{
+      padding: 34px 34px 26px 34px;
     }
 
     h1{
-      margin:0 0 10px 0;
-      font-size: clamp(24px, 3vw, 34px);
-      line-height:1.15;
-      letter-spacing:-0.5px;
-    }
-    p{
-      margin: 0 0 18px 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height:1.7;
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.05;
+      letter-spacing: -0.8px;
+      font-weight: 1000;
     }
 
-    .actions{ margin: 18px 0 28px 0; }
+    .sub{
+      margin: 12px 0 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 75ch;
+    }
+
+    .actions{
+      margin: 18px 0 16px 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+      align-items:center;
+    }
+
+    /* Typeform-like pill button */
     a.btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      height: 46px;
+      height: 48px;
       padding: 0 18px;
-      border-radius: 12px;
+      border-radius: 999px;
       text-decoration:none;
-      font-weight:900;
+      font-weight: 1000;
+      letter-spacing: -0.2px;
       background: var(--btn);
       color: var(--btnText);
-      border: 1px solid rgba(17,24,39,0.95);
-      box-shadow: 0 10px 24px rgba(15,23,42,0.12);
+      border: 1px solid rgba(11,18,32,0.95);
+      box-shadow: 0 18px 34px rgba(11,18,32,0.14);
+      transition: transform .12s ease, box-shadow .12s ease, opacity .12s ease;
+      white-space: nowrap;
+    }
+    a.btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 22px 40px rgba(11,18,32,0.16);
+      opacity:0.98;
+    }
+    a.btn:active{ transform: translateY(0); }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      background: var(--chipBg);
+      border: 1px solid var(--chipLine);
+      color: rgba(11,18,32,0.72);
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 900;
     }
 
     .divider{
-      margin: 32px 0 18px 0;
-      border-top: 1px solid var(--line);
+      margin: 18px 0 16px 0;
+      border-top: 1px solid rgba(11,18,32,0.10);
     }
+
     h2{
-      margin: 0 0 16px 0;
+      margin: 0 0 12px 0;
       font-size: 18px;
       letter-spacing:-0.2px;
+      font-weight: 1000;
     }
 
-    /* IMAGE AU-DESSUS DES 2 BLOCS */
+    /* Premium banner header */
+    .hero{
+      border-top: 1px solid rgba(11,18,32,0.08);
+      background:
+        radial-gradient(800px 320px at 10% 10%, rgba(99,102,241,0.12), transparent 62%),
+        radial-gradient(800px 320px at 90% 0%, rgba(16,185,129,0.10), transparent 58%),
+        #fff;
+      padding: 18px 34px 0 34px;
+    }
+
     .hero-image{
-      width:100%;
-      height:auto;
+      width: 100%;
+      height: 270px; /* limitation “fold” desktop */
+      object-fit: cover;
+      object-position: center;
       display:block;
-      border-radius:14px;
-      border:1px solid var(--line);
-      margin: 6px 0 22px 0;
+      border-radius: 20px;
+      border: 1px solid rgba(11,18,32,0.10);
+      box-shadow: var(--shadowSoft);
     }
 
-    /* LAYOUT DON + A PROPOS */
+    /* Don + About */
+    .don-area{
+      padding: 18px 34px 24px 34px;
+    }
+
     .don-layout{
       display:grid;
-      grid-template-columns: minmax(0,1fr) 380px;
-      gap:24px;
+      grid-template-columns: minmax(0,1fr) 360px;
+      gap: 18px;
       align-items:start;
     }
 
     .don-main{ min-width:0; }
+
+    /* widget containment */
     .iframe-asc-container{
       width:100% !important;
       max-width:100% !important;
       overflow:hidden !important;
     }
 
+    /* About “premium” card */
     .don-about{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-      background:#fff;
-      position:sticky;
-      top:24px;
+      border: 1px solid rgba(11,18,32,0.10);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+      padding: 16px 16px 14px 16px;
+      box-shadow: 0 14px 34px rgba(11,18,32,0.08);
+      position: sticky;
+      top: 18px;
     }
 
     .don-about p{
-      margin:0 0 12px 0;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
     }
     .don-about p strong{
-      color:var(--text);
-      font-weight:900;
+      color: var(--text);
+      font-weight: 1000;
     }
 
     .about-ul{
-      margin:8px 0 12px 18px;
-      padding:0;
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.7;
+      margin: 8px 0 12px 18px;
+      padding: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
     }
-    .about-ul li{ margin:6px 0; }
+    .about-ul li{ margin: 6px 0; }
 
     .about-cta{
-      margin-top:8px;
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.7;
+      margin-top: 8px;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
     }
 
     .rgpd{
-      margin-top:18px;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.55;
-      max-width:95ch;
+      margin: 0;
+      padding: 16px 34px 26px 34px;
+      font-size: 13px;
+      color: rgba(91,100,119,0.95);
+      line-height: 1.55;
+      border-top: 1px solid rgba(11,18,32,0.08);
+      background: rgba(246,247,251,0.35);
     }
 
-    @media (max-width: 900px){
-      .don-layout{ grid-template-columns:1fr; }
-      .don-about{ position:static; }
+    @media (max-width: 980px){
+      .card-inner{ padding: 28px 18px 22px 18px; }
+      .hero{ padding: 16px 18px 0 18px; }
+      .don-area{ padding: 16px 18px 22px 18px; }
+      .rgpd{ padding: 14px 18px 20px 18px; }
+      .hero-image{ height: 240px; border-radius: 18px; }
+      .don-layout{ grid-template-columns: 1fr; }
+      .don-about{ position: static; }
+    }
+
+    @media (max-width: 520px){
+      .hero-image{ height: 200px; }
+      a.btn{ width:100%; }
+      .chip{ width:100%; justify-content:center; }
     }
   </style>
 </head>
 
 <body>
+  <div class="bgfx"></div>
 
   <div class="topbar">
-    <div class="brand">FATCA • RGPD • Belgique</div>
-    <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+    <div class="brand">
+      FATCA <span class="sep"></span> RGPD <span class="sep"></span> Belgique
+    </div>
+    <a class="logo-link" href="{{ url_for('home') }}">
+      <img class="logo" src="/static/aaa-logo.png" alt="AAA">
+    </a>
   </div>
 
   <div class="wrap">
     <div class="card">
 
-      <h1>{{ t.ready_title }}</h1>
-      <p>{{ t.ready_sub }}</p>
+      <div class="card-inner">
+        <h1>{{ t.ready_title }}</h1>
+        <p class="sub">{{ t.ready_sub }}</p>
 
-      <div class="actions">
-        <a class="btn" href="{{ download_url }}">{{ t.download }} →</a>
-      </div>
-
-      <div class="divider"></div>
-
-      <h2>{{ t.support_title }}</h2>
-
-      <!-- IMAGE -->
-      <img class="hero-image"
-           src="{{ url_for('static', filename='fatca-combat.png') }}"
-           alt="Combat contre FATCA">
-
-      <div class="don-layout">
-
-        <!-- DON -->
-        <div class="don-main">
-          <div class="iframe-asc-container"
-               data-type="collect"
-               data-collect-id="01KDMS06DAP5ABR1CQM508SWRS"></div>
+        <div class="actions">
+          <a class="btn" href="{{ download_url }}">{{ t.download }} →</a>
+          <span class="chip">Téléchargez • Imprimez • Signez</span>
         </div>
 
-        <!-- A PROPOS -->
-        <aside class="don-about">
+        <div class="divider"></div>
 
-          {% set page_lang = lang|default('fr') %}
-
-          {% if page_lang == "fr" %}
-
-            <p><strong>Soutenir l’AAA, c’est combattre FATCA en Europe</strong></p>
-
-            <p>
-              L’Association des Américains Accidentels (AAA) mène depuis plusieurs années un combat juridique et politique contre FATCA, une loi américaine aux effets extraterritoriaux portant atteinte aux droits fondamentaux et à la protection des données personnelles en Europe.
-            </p>
-
-            <p>
-              Par ses actions devant les autorités nationales et européennes, l’AAA a contribué à faire émerger un enjeu majeur : la compatibilité des transferts massifs de données financières vers les États-Unis avec le RGPD et le respect de la vie privée.
-            </p>
-
-            <p>
-              👉 La prochaine étape est décisive : la question est désormais portée devant la Cour de justice de l’Union européenne (CJUE), appelée à se prononcer sur la conformité de FATCA avec le droit européen.
-            </p>
-
-            <p>L’AAA agit concrètement pour :</p>
-            <ul class="about-ul">
-              <li>défendre les personnes victimes de FATCA,</li>
-              <li>dénoncer les pratiques bancaires discriminatoires,</li>
-              <li>et faire prévaloir le droit européen face à une législation étrangère intrusive.</li>
-            </ul>
-
-            <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
-            <p class="about-cta">👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne et refuser l’extraterritorialité abusive de FATCA.</p>
-
-          {% else %}
-
-            <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
-
-            <p>
-              De Association des Américains Accidentels (AAA) voert al meerdere jaren een juridische en politieke strijd tegen FATCA, een Amerikaanse wet met extraterritoriale gevolgen die fundamentele rechten en de bescherming van persoonsgegevens in Europa ondermijnt.
-            </p>
-
-            <p>
-              Door haar acties bij nationale en Europese autoriteiten heeft de AAA bijgedragen aan het centraal stellen van een cruciale vraag: of de massale overdracht van financiële gegevens naar de Verenigde Staten verenigbaar is met de AVG en het recht op privacy respecteert.
-            </p>
-
-            <p>
-              👉 De volgende stap is beslissend: de kwestie ligt nu voor bij het Hof van Justitie van de Europese Unie (HvJ-EU), dat zich zal uitspreken over de verenigbaarheid van FATCA met het Europees recht.
-            </p>
-
-            <p>De AAA onderneemt concrete acties om:</p>
-            <ul class="about-ul">
-              <li>personen die door FATCA worden getroffen te verdedigen,</li>
-              <li>discriminerende bankpraktijken aan te vechten,</li>
-              <li>en het Europees recht te laten primeren boven buitenlandse wetgeving.</li>
-            </ul>
-
-            <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
-            <p class="about-cta">👉 De AAA steunen betekent de Europese rechtssoevereiniteit verdedigen en de buitensporige extraterritoriale werking van FATCA afwijzen.</p>
-
-          {% endif %}
-
-        </aside>
-
+        <h2>{{ t.support_title }}</h2>
       </div>
 
-      <!-- SCRIPT OBLIGATOIRE -->
-      <script src="https://www.americains-accidentels.fr/public/build/js/iframe.js"></script>
+      <div class="hero">
+        <img class="hero-image"
+             src="/static/fatca-combat.png"
+             alt="Combat contre FATCA">
+      </div>
+
+      <div class="don-area">
+        <div class="don-layout">
+
+          <div class="don-main">
+            <div class="iframe-asc-container"
+                 data-type="collect"
+                 data-collect-id="01KDMS06DAP5ABR1CQM508SWRS"></div>
+          </div>
+
+          <aside class="don-about">
+            {% set page_lang = lang|default('fr') %}
+
+            {% if page_lang == "fr" %}
+
+              <p><strong>Soutenir l’AAA, c’est combattre FATCA en Europe</strong></p>
+
+              <p>
+                L’Association des Américains Accidentels (AAA) mène depuis plusieurs années un combat juridique et politique contre FATCA, une loi américaine aux effets extraterritoriaux portant atteinte aux droits fondamentaux et à la protection des données personnelles en Europe.
+              </p>
+
+              <p>
+                Par ses actions devant les autorités nationales et européennes, l’AAA a contribué à faire émerger un enjeu majeur : la compatibilité des transferts massifs de données financières vers les États-Unis avec le RGPD et le respect de la vie privée.
+              </p>
+
+              <p>
+                👉 La prochaine étape est décisive : la question est désormais portée devant la Cour de justice de l’Union européenne (CJUE), appelée à se prononcer sur la conformité de FATCA avec le droit européen.
+              </p>
+
+              <p>L’AAA agit concrètement pour :</p>
+              <ul class="about-ul">
+                <li>défendre les personnes victimes de FATCA,</li>
+                <li>dénoncer les pratiques bancaires discriminatoires,</li>
+                <li>et faire prévaloir le droit européen face à une législation étrangère intrusive.</li>
+              </ul>
+
+              <p class="about-cta">👉 Les dons servent directement à financer ces actions en justice.</p>
+              <p class="about-cta">👉 Soutenir l’AAA, c’est défendre la souveraineté juridique européenne et refuser l’extraterritorialité abusive de FATCA.</p>
+
+            {% else %}
+
+              <p><strong>De AAA steunen betekent FATCA in Europa bestrijden</strong></p>
+
+              <p>
+                De Association des Américains Accidentels (AAA) voert al meerdere jaren een juridische en politieke strijd tegen FATCA, een Amerikaanse wet met extraterritoriale gevolgen die fundamentele rechten en de bescherming van persoonsgegevens in Europa ondermijnt.
+              </p>
+
+              <p>
+                Door haar acties bij nationale en Europese autoriteiten heeft de AAA bijgedragen aan het centraal stellen van een cruciale vraag: of de massale overdracht van financiële gegevens naar de Verenigde Staten verenigbaar is met de AVG en het recht op privacy respecteert.
+              </p>
+
+              <p>
+                👉 De volgende stap is beslissend: de kwestie ligt nu voor bij het Hof van Justitie van de Europese Unie (HvJ-EU), dat zich zal uitspreken over de verenigbaarheid van FATCA met het Europees recht.
+              </p>
+
+              <p>De AAA onderneemt concrete acties om:</p>
+              <ul class="about-ul">
+                <li>personen die door FATCA worden getroffen te verdedigen,</li>
+                <li>discriminerende bankpraktijken aan te vechten,</li>
+                <li>en het Europees recht te laten primeren boven buitenlandse wetgeving.</li>
+              </ul>
+
+              <p class="about-cta">👉 Donaties worden rechtstreeks gebruikt om deze gerechtelijke acties te financieren.</p>
+              <p class="about-cta">👉 De AAA steunen betekent de Europese rechtssoevereiniteit verdedigen en de buitensporige extraterritoriale werking van FATCA afwijzen.</p>
+
+            {% endif %}
+          </aside>
+
+        </div>
+
+        <!-- REQUIRED script for the donation widget -->
+        <script src="https://www.americains-accidentels.fr/public/build/js/iframe.js"></script>
+      </div>
 
       <p class="rgpd">
         Les informations renseignées dans le cadre du formulaire de don sont collectées
