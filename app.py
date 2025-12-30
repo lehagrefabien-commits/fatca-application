@@ -235,7 +235,12 @@ def generate():
     doc.save(output_path)
 
     download_url = url_for("download", token=token)
-    return render_template("merci.html", download_url=download_url, t=TEXTS[lang])
+    return render_template(
+    "merci.html",
+    download_url=download_url,
+    t=TEXTS[lang],
+    lang=lang
+)
 
 
 @app.route("/download/<token>", methods=["GET"])
