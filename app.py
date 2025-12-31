@@ -141,6 +141,35 @@ TEXTS = {
 }
 
 # =========================
+# 2bis) Textes UI (page Contexte)
+# =========================
+CONTEXT_UI = {
+    "fr": {
+        "page_title": "Accord FATCA – Contexte juridique",
+        "kpi_label": "courriers déjà générés",
+        "kpi_note": "Indicateur mis à jour automatiquement.",
+        "kpi_desc": (
+            "Ce chiffre correspond au nombre de courriers générés via cette application afin d’exercer "
+            "le droit d’accès et le droit à l’effacement des données personnelles, tels que garantis par le RGPD, "
+            "dans le contexte de l’accord FATCA."
+        ),
+        "cta_primary": "Continuer →",
+        "cta_secondary": "← Retour",
+    },
+    "nl": {
+        "page_title": "FATCA-akkoord – Juridische context",
+        "kpi_label": "brieven reeds gegenereerd",
+        "kpi_note": "Indicator wordt automatisch bijgewerkt.",
+        "kpi_desc": (
+            "Dit cijfer geeft het aantal brieven weer dat via deze toepassing werd gegenereerd om het recht op inzage "
+            "en het recht op gegevenswissing uit te oefenen, zoals gewaarborgd door de AVG, in het kader van het FATCA-akkoord."
+        ),
+        "cta_primary": "Verder →",
+        "cta_secondary": "← Terug",
+    },
+}
+
+# =========================
 # 3) Remplacement dans Word
 # =========================
 def _replace_in_paragraph(paragraph, mapping: dict):
@@ -172,10 +201,20 @@ def _replace_in_doc(doc: Document, mapping: dict):
 # =========================
 # 4) Routes
 # =========================
-@app.route("/", methods=["GET"])
-def home():
+@app.route("/context/<lang>", methods=["GET"])
+def context(lang):
+    if lang not in ("fr", "nl"):
+        abort(404)
+
     count = get_counter()
-    return render_template("lang_select.html", generated_count=count)
+
+    return render_template(
+        "langue.html",
+        context_text=CONTEXT[lang],     # ton HTML FR/NL existant
+        lang=lang,                     # la langue de la page
+        t=CONTEXT_UI[lang],            # textes UI FR/NL pour l'encart compteur + titres/boutons
+        generated_count=count,         # compteur affiché sur la page Contexte uniquement
+    )
 
 @app.route("/context/<lang>", methods=["GET"])
 def context(lang):
