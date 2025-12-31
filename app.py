@@ -216,20 +216,6 @@ def context(lang):
         generated_count=count,         # compteur affiché sur la page Contexte uniquement
     )
 
-@app.route("/context/<lang>", methods=["GET"])
-def context(lang):
-    if lang not in ("fr", "nl"):
-        abort(404)
-
-    count = get_counter()
-
-    return render_template(
-        "langue.html",
-        context_text=CONTEXT[lang],
-        lang=lang,
-        generated_count=count,
-    )
-
 @app.route("/fr", methods=["GET"])
 def form_fr():
     return _render_form("fr")
