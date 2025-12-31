@@ -65,87 +65,6 @@
       letter-spacing:-0.5px;
     }
 
-    /* ===== Counter / explanation (premium “stat card”) ===== */
-    .impact{
-      margin: 10px 0 18px 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .impact-card{
-      border: 1px solid rgba(15,23,42,0.10);
-      border-radius: 14px;
-      padding: 14px 14px;
-      background: rgba(15,23,42,0.03);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-    }
-
-    .impact-kpi{
-      display:flex;
-      align-items:baseline;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .impact-number{
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -0.3px;
-      color: #0f172a;
-      line-height:1;
-    }
-
-    .impact-label{
-      font-size: 13px;
-      font-weight: 900;
-      color:#0f172a;
-      white-space: nowrap;
-    }
-
-    .impact-note{
-      font-size: 12px;
-      color: #475569;
-      font-weight: 700;
-      white-space: nowrap;
-      opacity: 0.9;
-    }
-
-    .impact-text{
-      max-width: 78ch;
-    }
-
-    .impact-pill{
-      display:flex;
-      gap: 10px;
-      align-items:flex-start;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(15,23,42,0.10);
-      background: #ffffff;
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.65;
-    }
-
-    .impact-icon{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(15,23,42,0.12);
-      background: rgba(15,23,42,0.03);
-      color:#0f172a;
-      font-weight: 900;
-      flex: 0 0 auto;
-      margin-top: 2px;
-      font-size: 12px;
-    }
-
     /* ===== Language buttons ===== */
     .btn{
       display:flex;
@@ -187,18 +106,6 @@
     @media (max-width: 860px){
       .card{ padding: 32px 18px; }
     }
-    @media (max-width: 640px){
-      .impact-card{
-        flex-direction: column;
-        align-items:flex-start;
-      }
-      .impact-note{
-        white-space: normal;
-      }
-      .impact-label{
-        white-space: normal;
-      }
-    }
   </style>
 </head>
 
@@ -213,25 +120,6 @@
   <div class="wrap">
     <div class="card">
       <h1>Please choose your language</h1>
-
-      {% if generated_count is defined %}
-      <div class="impact" id="impact">
-        <div class="impact-card">
-          <div class="impact-kpi">
-            <div class="impact-number">{{ generated_count }}</div>
-            <div class="impact-label" data-i18n="label"></div>
-          </div>
-          <div class="impact-note" data-i18n="note"></div>
-        </div>
-
-        <div class="impact-text">
-          <div class="impact-pill">
-            <span class="impact-icon">ℹ︎</span>
-            <span data-i18n="desc"></span>
-          </div>
-        </div>
-      </div>
-      {% endif %}
 
       <div class="list">
         <a class="btn" href="/context/fr" onclick="localStorage.setItem('ui_lang','fr')">
@@ -249,40 +137,5 @@
 
     </div>
   </div>
-
-  <script>
-    (function(){
-      var t = {
-        fr: {
-          label: "courriers déjà générés",
-          note: "Indicateur mis à jour automatiquement.",
-          desc: "Ce chiffre correspond au nombre de courriers générés via cette application afin d’exercer le droit d’accès et le droit à l’effacement des données personnelles, tels que garantis par le RGPD, dans le contexte de l’accord FATCA."
-        },
-        nl: {
-          label: "brieven reeds gegenereerd",
-          note: "Indicator wordt automatisch bijgewerkt.",
-          desc: "Dit cijfer geeft het aantal brieven weer dat via deze toepassing werd gegenereerd om het recht op inzage en het recht op gegevenswissing uit te oefenen, zoals gewaarborgd door de AVG, in het kader van de FATCA-overeenkomst."
-        }
-      };
-
-      // Langue affichée sur cette page :
-      // - si l’utilisateur a déjà cliqué FR/NL auparavant, on réutilise son choix
-      // - sinon, on prend la langue du navigateur (nl -> NL), sinon FR
-      var saved = localStorage.getItem("ui_lang");
-      var nav = (navigator.language || "").toLowerCase();
-      var lang = saved || (nav.startsWith("nl") ? "nl" : "fr");
-
-      var root = document.getElementById("impact");
-      if(!root) return;
-
-      root.querySelectorAll("[data-i18n]").forEach(function(el){
-        var k = el.getAttribute("data-i18n");
-        el.textContent = t[lang][k];
-      });
-
-      // Accessibilité : refléter la langue réelle
-      document.documentElement.setAttribute("lang", lang);
-    })();
-  </script>
 </body>
 </html>
