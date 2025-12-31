@@ -181,7 +181,15 @@ def home():
 def context(lang):
     if lang not in ("fr", "nl"):
         abort(404)
-    return render_template("langue.html", context_text=CONTEXT[lang], lang=lang)
+
+    count = get_counter()
+
+    return render_template(
+        "langue.html",
+        context_text=CONTEXT[lang],
+        lang=lang,
+        generated_count=count,
+    )
 
 @app.route("/fr", methods=["GET"])
 def form_fr():
