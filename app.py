@@ -201,6 +201,10 @@ def _replace_in_doc(doc: Document, mapping: dict):
 # =========================
 # 4) Routes
 # =========================
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("lang_select.html")
+
 @app.route("/context/<lang>", methods=["GET"])
 def context(lang):
     if lang not in ("fr", "nl"):
