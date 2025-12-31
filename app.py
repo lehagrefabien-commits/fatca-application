@@ -5,8 +5,32 @@ from datetime import datetime
 from flask import Flask, render_template, request, send_file, abort, url_for
 from docx import Document
 
+from pathlib import Path
+from threading import Lock
+
 # Dossier racine du projet (là où se trouve app.py)
 APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# =========================
+# Compteur de formulaires générés
+# =========================
+COUNTER_FILE = Path(APP_DIR) / "counter.txt"
+COUNTER_LOCK = Lock()
+
+def get_counter() -> int:
+    if not COUNTER_FILE.exists():
+        COUNTER_FILE.write_text("0", encoding="utf-8")
+        return 0
+    try:
+        return int(COUNTER_FILE.read_text(encoding="utf-8").strip())
+    except ValueError:
+        return 0
+
+def increment_counter() -> int:
+    with COUNTER_LOCK:
+        value = get_counter() + 1
+        COUNTER_FILE.write_text(str(value), encoding="utf-8")
+        return value
 
 # Dossier de sortie pour les fichiers générés
 OUTPUT_DIR = os.path.join(APP_DIR, "output")
@@ -150,8 +174,8 @@ def _replace_in_doc(doc: Document, mapping: dict):
 # =========================
 @app.route("/", methods=["GET"])
 def home():
-    # Page neutre de choix de langue
-    return render_template("lang_select.html")
+    count = get_counter()
+    return render_template("lang_select.html", generated_count=count)
 
 @app.route("/context/<lang>", methods=["GET"])
 def context(lang):
@@ -179,6 +203,7 @@ def _render_form(lang: str):
 
 @app.route("/generate", methods=["POST"])
 def generate():
+    increment_counter()
     lang = request.form.get("lang", "fr").strip()
     if lang not in ("fr", "nl"):
         lang = "fr"
