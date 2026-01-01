@@ -64,7 +64,14 @@
       line-height:1.15;
       letter-spacing:-0.5px;
     }
+    .subtitle{
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
 
+    
     /* ===== Language buttons ===== */
     .btn{
       display:flex;
@@ -120,6 +127,7 @@
   <div class="wrap">
     <div class="card">
       <h1>Please choose your language</h1>
+      <p class="subtitle" id="language-subtitle"></p>
 
       <div class="list">
         <a class="btn" href="/context/fr" onclick="localStorage.setItem('ui_lang','fr')">
@@ -137,5 +145,18 @@
 
     </div>
   </div>
+  <script>
+    const subtitles = {
+      fr: "Choisissez votre langue pour continuer la procédure de demande d’effacement des données collectées au titre du FATCA.",
+      nl: "Kies uw taal om de procedure voort te zetten voor het verzoek tot verwijdering van gegevens die zijn verzameld in het kader van FATCA.",
+    };
+
+    const browserLang = (navigator.language || "").toLowerCase();
+    const preferredLang = browserLang.startsWith("nl") ? "nl" : "fr";
+    const subtitleEl = document.getElementById("language-subtitle");
+    if (subtitleEl) {
+      subtitleEl.textContent = subtitles[preferredLang];
+    }
+  </script>  
 </body>
 </html>
