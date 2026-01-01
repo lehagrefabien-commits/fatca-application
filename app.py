@@ -149,9 +149,8 @@ CONTEXT_UI = {
         "kpi_label": "courriers déjà générés",
         "kpi_note": "Indicateur mis à jour automatiquement.",
         "kpi_desc": (
-            "Ce chiffre correspond au nombre de courriers générés via cette application afin d’exercer "
-            "le droit d’accès et le droit à l’effacement des données personnelles, tels que garantis par le RGPD, "
-            "dans le contexte de l’accord FATCA."
+                        "Nombre de courriers générés via cette application afin d’exercer le droit d’accès et le droit à l’effacement "
+            "des données personnelles, tels que garantis par le RGPD, dans le contexte de l’accord FATCA."
         ),
         "cta_primary": "Continuer →",
         "cta_secondary": "← Retour",
