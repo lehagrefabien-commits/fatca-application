@@ -160,8 +160,8 @@ CONTEXT_UI = {
         "kpi_label": "brieven reeds gegenereerd",
         "kpi_note": "Indicator wordt automatisch bijgewerkt.",
         "kpi_desc": (
-            "Dit cijfer geeft het aantal brieven weer dat via deze toepassing werd gegenereerd om het recht op inzage "
-            "en het recht op gegevenswissing uit te oefenen, zoals gewaarborgd door de AVG, in het kader van het FATCA-akkoord."
+           "Aantal brieven gegenereerd via deze toepassing om het recht op inzage en het recht op gegevenswissing uit "
+            "te oefenen, zoals gewaarborgd door de AVG, in het kader van het FATCA-akkoord."
         ),
         "cta_primary": "Verder →",
         "cta_secondary": "← Terug",
