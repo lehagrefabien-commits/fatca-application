@@ -44,7 +44,7 @@ app = Flask(__name__)
 # =========================
 CONTEXT = {
     "fr": (
-        "<strong>Contexte – Accord FATCA</strong><br><br>"
+        "<strong>Accord FATCA – Contexte juridique</strong><br><br>"
         "Par un arrêt interlocutoire rendu fin 2025, la Cour des marchés de Belgique a décidé de saisir "
         "la Cour de justice de l’Union européenne (CJUE) de treize questions préjudicielles "
         "relatives à la conformité de l’accord intergouvernemental FATCA avec le droit de "
