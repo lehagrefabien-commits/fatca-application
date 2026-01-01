@@ -45,10 +45,10 @@ app = Flask(__name__)
 CONTEXT = {
     "fr": (
         "<strong>Accord FATCA – Contexte juridique</strong><br><br>"
-        "Par un arrêt interlocutoire rendu fin 2025, la Cour des marchés de Belgique a décidé de saisir "
-        "la Cour de justice de l’Union européenne (CJUE) de treize questions préjudicielles "
-        "relatives à la conformité de l’accord intergouvernemental FATCA avec le droit de "
-        "l’Union européenne, et en particulier avec les exigences du règlement général sur "
+        "Par un arrêt interlocutoire rendu fin 2025, <a href=\"https://www.autoriteprotectiondonnees.be/professionnel/actualites/2025/12/04/fatca-la-cour-des-marches-saisit-la-cjue-de-13-questions-prejudicielles\">"
+        "la Cour des marchés de Belgique a décidé de saisir la Cour de justice de l’Union européenne (CJUE) "
+        "de treize questions préjudicielles relatives à la conformité de l’accord intergouvernemental FATCA "
+        "avec le droit de l’Union européenne</a>, et en particulier avec les exigences du règlement général sur "
         "la protection des données (RGPD).<br><br>"
         "Cette saisine intervient à la suite de la décision n°79/2025 du 24 avril 2025 de "
         "l’Autorité de protection des données (APD), par laquelle plusieurs violations du "
