@@ -44,7 +44,7 @@ app = Flask(__name__)
 # =========================
 CONTEXT = {
     "fr": (
-        "<span class=\"context-title\">Accord FATCA – Contexte juridique</span><br><br>"
+        "<span class=\"context-title\">Accord FATCA – Contexte juridique</span><br>"
         "Par un arrêt interlocutoire rendu fin 2025, <a href=\"https://www.autoriteprotectiondonnees.be/professionnel/actualites/2025/12/04/fatca-la-cour-des-marches-saisit-la-cjue-de-13-questions-prejudicielles\">"
         "la Cour des marchés de Belgique a décidé de saisir la Cour de justice de l’Union européenne (CJUE) "
         "de treize questions préjudicielles relatives à la conformité de l’accord intergouvernemental FATCA "
@@ -64,7 +64,7 @@ CONTEXT = {
         "en générant un courrier prêt à être imprimé, signé et adressé."
     ),
     "nl": (
-        "<span class=\"context-title\">Context – FATCA-akkoord</span><br><br>"
+      "<span class=\"context-title\">Context – FATCA-akkoord</span><br>"
         "Bij een interlocutoir arrest dat eind 2025 werd gewezen, <a href=\"https://www.gegevensbeschermingsautoriteit.be/professioneel/nieuws/2025/12/04/fatca-het-marktenhof-legt-13-prejudiciele-vragen-voor-aan-het-hvj-eu\">"
         "heeft het Marktenhof van België beslist om dertien prejudiciële vragen voor te leggen aan het Hof van "
         "Justitie van de Europese Unie (HvJ-EU) met betrekking tot de verenigbaarheid van het "
