@@ -65,10 +65,10 @@ CONTEXT = {
     ),
     "nl": (
         "<strong>Context – FATCA-akkoord</strong><br><br>"
-        "Bij een interlocutoir arrest dat eind 2025 werd gewezen, heeft het Marktenhof van België "
-        "beslist om dertien prejudiciële vragen voor te leggen aan het Hof van Justitie van "
-        "de Europese Unie (HvJ-EU) met betrekking tot de verenigbaarheid van het "
-        "intergouvernementele FATCA-akkoord met het recht van de Europese Unie, en in het "
+        "Bij een interlocutoir arrest dat eind 2025 werd gewezen, <a href=\"https://www.gegevensbeschermingsautoriteit.be/professioneel/nieuws/2025/12/04/fatca-het-marktenhof-legt-13-prejudiciele-vragen-voor-aan-het-hvj-eu\">"
+        "heeft het Marktenhof van België beslist om dertien prejudiciële vragen voor te leggen aan het Hof van "
+        "Justitie van de Europese Unie (HvJ-EU) met betrekking tot de verenigbaarheid van het "
+        "intergouvernementele FATCA-akkoord met het recht van de Europese Unie</a>, en in het "
         "bijzonder met de vereisten van de Algemene Verordening Gegevensbescherming (AVG).<br><br>"
         "Deze verwijzing volgt op beslissing nr. 79/2025 van 24 april 2025 van de "
         "Gegevensbeschermingsautoriteit (GBA), waarin meerdere schendingen van de AVG werden "
